@@ -52,13 +52,13 @@ public class testingTasks {
         testIt chosen = new testIt();
 
         int[] firstDuration = {9, 5};
-        int[] secondDuration = {10, 9, 55, 11, 1};
+        int[] secondDuration = {10, 12, 55, 11, 1};
 
         int firstD = chosen.returnTotalHours(firstDuration);
         int secondD = chosen.returnTotalHours(secondDuration);
 
         assertEquals(15, firstD, "Total hours should be 15 for the first data set");
-        assertEquals(86, secondD, "Total hours should be 86 for the additional data set");
+        assertEquals(89, secondD, "Total hours should be 89 for the additional data set");
     }
     // Unit test for Task ID 
     @Test
