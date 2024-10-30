@@ -17,10 +17,10 @@ public class Home {
         String response3= "FAILED TO REGISTER. Both Username and PAssword are invalid :-(";
         
         
-        JOptionPane.showMessageDialog(null, "Welcome to Account Creator:-) ");
+        JOptionPane.showMessageDialog(null, "Welcome to Account Creator:-) EazKanBan ");
         //Create username and Password
    
-        String name = JOptionPane.showInputDialog("Create a cool Username: (must have an underscore and less than 5 characters)");
+ /**       String name = JOptionPane.showInputDialog("Create a cool Username: (must have an underscore and less than 5 characters)");
        
         String key = JOptionPane.showInputDialog("Create a Strong Password: (must have a capital letter, number, special character and more than 8 characters)");
         
@@ -99,15 +99,20 @@ public class Home {
            JOptionPane.showMessageDialog(null, "Welcome to Easy KanBan " +firstName+" "+surname+ ", We hope you have a good day");
             
         }
-        
+        **/
         //Part 2
            int opp =0;
-         
+            int count=99;
+          String arrayName[]=null;
+          String arrayDescription[]=null;
+          String arrayDeveloper[]=null;
+          String arrayStatus[]=null;
+          String arrayTaskId[]=null;
+          int arrayDuration[]=null;
         while(opp != 3){
-        //Choose Option
-             JOptionPane.showMessageDialog(null, "Choose an Option" );    
-            String menu[]={"Add Tasks" , "Show Report - 'Coming Soon'", "Quit"};
-                            int menuChosen = JOptionPane.showOptionDialog(null, "Choose an Option","Add Tasks/Show Report - 'Coming Soon'/Quit" ,JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, menu,menu[0]);
+        //Choose Option   
+            String menu[]={"Add Tasks" , "Show Report - (must have tasks created)", "Quit"};
+            int menuChosen = JOptionPane.showOptionDialog(null, "Choose an Option","Add Tasks/Show Report - 'Coming Soon'/Quit" ,JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, menu,menu[0]);
                                
             opp = menuChosen +1;
             
@@ -116,23 +121,20 @@ public class Home {
                    
                     JOptionPane.showMessageDialog(null, "Invalid Option" );  
                 case 3:
-                    JOptionPane.showMessageDialog(null, "Goodbye" );    
-                break;
-                case 2:
-                     JOptionPane.showMessageDialog(null, "Coming Soon" );    
+                    JOptionPane.showMessageDialog(null, "Thank you for visting EazKanBan !! Goodbye" );    
                 break;
                 case 1:
                         
                     
-                      int count = Integer.parseInt(JOptionPane.showInputDialog("How many Tasks would you like to add"));
+                       count = Integer.parseInt(JOptionPane.showInputDialog("How many Tasks would you like to add"));
                   
                       //Arrays to Store data
-                        String arrayName[]=new String[count];
-                        String arrayDescription[] =new String[count];
-                        String arrayDeveloper[]=new String[count];
-                       String arrayStatus[] = new String[count];
-                        String arrayTaskId[]=new String[count];
-                        int arrayDuration[]=new int[count];
+                         arrayName=new String[count];
+                         arrayDescription =new String[count];
+                         arrayDeveloper=new String[count];
+                        arrayStatus = new String[count];
+                         arrayTaskId=new String[count];
+                         arrayDuration=new int[count];
                      
                         
                         //Loop to create tasks
@@ -175,6 +177,91 @@ public class Home {
                        int totalTime = task.returnTotalHours(arrayDuration);
                      JOptionPane.showMessageDialog(null, "Total Duration  :" +totalTime );  
                    break;
+                case 2:
+                    //Part 3
+                      
+                     if(arrayName==null && arrayDescription==null && arrayDeveloper==null && arrayStatus==null && arrayTaskId==null && arrayDuration==null){
+                          JOptionPane.showMessageDialog(null,"The Tasks have not been created " ); 
+                         break;
+                
+                }
+                 int menuChosen1 =0;    
+                 //Loop Report Showing Center
+                 while (menuChosen1!=6){
+                     
+                String menu1[]={"Display all 'Done' Tasks" , "Longest Duration", "Search for Task", "Search for Developer","Delete a task", "Display All Tasks", "Exit Report Center"};
+                menuChosen1 = JOptionPane.showOptionDialog(null, "Choose an Option","Options" ,JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, menu1,menu1[0]);
+              
+                switch (menuChosen1)
+                {
+                   case 6:
+                       JOptionPane.showMessageDialog(null,"Report Ending" ); 
+                   break;
+                   case 0:
+                       JOptionPane.showMessageDialog(null,"Showing All TAsks With Status 'Done' " ); 
+                       //Checking for all Finished Tasks
+                       for(int x=0; x < count; x+=1){
+                           if(arrayStatus[x].compareTo("Done")==0){
+                                JOptionPane.showMessageDialog(null, "Developer Name :"+ arrayDeveloper[x] +"\n" + "Task Name :"+ arrayName[x] +"\n" + "Task Duration :"+ arrayDuration[x] );    
+                           }
+                       }
+                   break;
+                   case 1:
+                       int max=0;
+                     //Finding Max Duration
+                         for(int x=0; x < count; x+=1){
+                           if(arrayDuration[x]>=max){
+                               max=arrayDuration[x];
+                           }
+                         }
+                        //Displaying tasks highest  duration
+                           for(int y=0; y < count; y+=1){
+                           if(arrayDuration[y]==max){
+                                JOptionPane.showMessageDialog(null, "Developer Name :"+ arrayDeveloper[y] +"\n" + "Task Duration :"+ arrayDuration[y] );    
+                           } 
+                       }
+                   break;
+                   //Search for Task Name
+                   case 2:
+                       String SO = JOptionPane.showInputDialog("Enter task name of task you're looking for");
+                       for(int x=0; x < count; x+=1){
+                           if(arrayName[x].compareTo(SO)==0){
+                             JOptionPane.showMessageDialog(null, "Developer Name :"+ arrayDeveloper[x] +"\n" + "Task Name :"+ arrayName[x] +"\n" + "Task Status  :"+ arrayStatus[x] );     
+                              break;
+                           }
+                       }
+                      
+                   break;
+                   //Search for Developer Name
+                   case 3:
+                            String SEO = JOptionPane.showInputDialog("Enter Developer Name of task you're looking for");
+                       for(int x=0; x < count; x+=1){
+                           if(arrayDeveloper[x].compareTo(SEO)==0){
+                             JOptionPane.showMessageDialog(null,"Task Name :"+ arrayName[x] +"\n" + "Task Status  :"+ arrayStatus[x] );     
+                           
+                           }
+                       }
+                         
+                   break;
+                   //Delete One Task
+                   case 4:
+                       
+                       
+                   break;
+                   //Display ALL
+                   case 5:
+                       JOptionPane.showMessageDialog(null,"Displaying All Tasks Saved Currently" ); 
+                       for(int x=0; x < count; x+=1){
+                          JOptionPane.showMessageDialog(null, task.printTaskDetails( arrayName[x],arrayDescription[x], arrayDeveloper[x] , arrayStatus[x],  arrayDuration[x], x+1,  arrayTaskId[x]));        
+                       }
+                   break;
+                   
+               }
+               
+               
+                 } 
+            
+            
             }
             
              
