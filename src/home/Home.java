@@ -245,7 +245,30 @@ public class Home {
                    break;
                    //Delete One Task
                    case 4:
+                      
+                       String del = JOptionPane.showInputDialog("Enter task name of task you're to delete");
                        
+                       for(int x=0; x < count; x+=1){
+                           if(arrayName[x].compareTo(del)==0){
+                               int y=x+1;
+                             while(y<count){                                     
+                                  arrayName[x]=arrayName[y];
+                                  arrayDescription[x] =arrayDescription[y];
+                                  arrayDeveloper[x]= arrayDeveloper[y];
+                                  arrayStatus[x] = arrayStatus[y] ;
+                                  arrayTaskId[x]=arrayTaskId[y];
+                                  arrayDuration[x]= arrayDuration[y];
+                                    
+                                  y+=1;
+                                  x+=1;
+                                  
+                                  
+                             
+                             }
+                             count-=1;
+                           }
+                       }
+                      
                        
                    break;
                    //Display ALL
